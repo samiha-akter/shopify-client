@@ -1,7 +1,11 @@
 import React from "react";
 import { NavLink, Link } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
+import UserDropdown from "../components/UserDropdown";
 
 export default function Navbar() {
+  const { user } = useAuth();
+
   const navLinks = (
     <>
       <li>
@@ -51,18 +55,18 @@ export default function Navbar() {
         <ul className="menu menu-horizontal px-1">{navLinks}</ul>
       </div>
       <div className="navbar-end">
-        <div className="flex items-center gap-2">
-          <Link to="/login">
-            <button className="btn btn-secondary btn-outline">
-              Login
-            </button>
-          </Link>
-          <Link to="/register">
-            <button className="btn btn-secondary">
-              Register
-            </button>
-          </Link>
-        </div>
+        {user? (
+          <UserDropdown />
+        ) : (
+          <div className="flex items-center gap-2">
+            <Link to="/login">
+              <button className="btn btn-secondary btn-outline">Login</button>
+            </Link>
+            <Link to="/register">
+              <button className="btn btn-secondary">Register</button>
+            </Link>
+          </div>
+        )}
       </div>
     </div>
   );

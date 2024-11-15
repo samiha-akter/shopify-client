@@ -1,10 +1,11 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import { useForm } from "react-hook-form";
 
 export default function Login() {
   const { Login } = useAuth();
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -12,7 +13,9 @@ export default function Login() {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
+    Login(data.email, data.password);
+    navigate("/");
+
   }
   return (
     <div className="hero bg-base-300 min-h-screen">
