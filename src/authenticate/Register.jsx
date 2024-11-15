@@ -15,8 +15,8 @@ export default function Register() {
   const onSubmit = (data) => {
     CreateUser(data.email, data.password);
     navigate("/");
-  }
-  
+  };
+
   return (
     <div className="hero bg-base-300 min-h-screen">
       <div className="hero-content flex-col lg:flex-row-reverse">
@@ -40,11 +40,11 @@ export default function Register() {
                 className="input input-bordered"
                 {...register("email", { required: true })}
               />
-              {errors.email?.type==='required' &&
+              {errors.email?.type === "required" && (
                 <p className="text-red-500 text-sm font-light">
                   Email is required!
                 </p>
-              }
+              )}
             </div>
             <div className="form-control">
               <label className="label">
@@ -54,18 +54,18 @@ export default function Register() {
                 type="password"
                 placeholder="password"
                 className="input input-bordered"
-                {...register("password",{required: true, minLength: 6,})}
+                {...register("password", { required: true, minLength: 6 })}
               />
-               {errors.password?.type==='required' && 
+              {errors.password?.type === "required" && (
                 <p className="text-red-500 text-sm font-light">
                   Password is required!
                 </p>
-              }
-              {errors.password?.type==='minLength' && 
+              )}
+              {errors.password?.type === "minLength" && (
                 <p className="text-red-500 text-sm font-light">
                   Password must have atleast 6 characters!
                 </p>
-              }
+              )}
             </div>
             <div className="form-control">
               <label className="label">
@@ -75,29 +75,44 @@ export default function Register() {
                 type="password"
                 placeholder="confirm password"
                 className="input input-bordered"
-                {
-                ...register('confirmPassword', {
+                {...register("confirmPassword", {
                   required: true,
                   validate: (value) => {
-                    if (watch('password') != value) {
-                      return "Your passwords do not match."
+                    if (watch("password") != value) {
+                      return "Your passwords do not match.";
                     }
-                  }
-                })
-                }
+                  },
+                })}
               />
-              {errors.confirmPAssword && 
+              {errors.confirmPAssword && (
                 <p className="text-red-500 text-sm font-light">
                   Both passwords don't match.
                 </p>
-              }
+              )}
+            </div>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Role</span>
+              </label>
+              <select className="select select-bordered w-full max-w-xs" {...register("role", {required:true})}>
+                
+                <option value="buyer">Buyer</option>
+                <option value="seller">Seller</option>
+              </select>
+              {errors.role && (
+                <p className="text-red-500 text-sm font-light">
+                  You must select your role.
+                </p>
+              )}
             </div>
             <div className="form-control mt-6">
-              <button type="submit" className="btn btn-secondary">Register</button>
+              <button type="submit" className="btn btn-secondary">
+                Register
+              </button>
             </div>
-            
-              <GoogleLogin/>
-            
+
+            <GoogleLogin />
+
             <p className="my-4 text-sm font-light">
               Already have an account?{" "}
               <Link to="/login" className="text-pink-500 underline">
