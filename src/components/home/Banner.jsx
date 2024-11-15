@@ -6,7 +6,7 @@ export default function Banner() {
       className="hero min-h-screen"
       style={{
         backgroundImage:
-          "url(https://img.freepik.com/free-photo/full-length-portrait-happy-young-woman-holding-shopping-bags-mobile-phone-isolated_231208-5590.jpg?t=st=1731690849~exp=1731694449~hmac=58d9a701b484469af1e061274539825c44d1d48aa5fcedcb5298f3505d1a4304&w=740)",
+          "url(https://img.freepik.com/free-photo/close-up-collection-make-up-beauty-products_23-2148620012.jpg?t=st=1731694756~exp=1731698356~hmac=4ac4ea40244737bdad9e406dd37603ea7d7faed951475390dfaedd49dbd28b4f&w=740)",
       }}
     >
       <div className="hero-overlay bg-opacity-60"></div>
