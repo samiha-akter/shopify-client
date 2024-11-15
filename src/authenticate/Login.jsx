@@ -2,6 +2,7 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import { useForm } from "react-hook-form";
+import GoogleLogin from "./GoogleLogin";
 
 export default function Login() {
   const { Login } = useAuth();
@@ -15,8 +16,7 @@ export default function Login() {
   const onSubmit = (data) => {
     Login(data.email, data.password);
     navigate("/");
-
-  }
+  };
   return (
     <div className="hero bg-base-300 min-h-screen">
       <div className="hero-content flex-col lg:flex-row-reverse">
@@ -40,11 +40,11 @@ export default function Login() {
                 className="input input-bordered"
                 {...register("email", { required: true })}
               />
-              {errors.email?.type==='required' &&
+              {errors.email?.type === "required" && (
                 <p className="text-red-500 text-sm font-light">
                   Email is required!
                 </p>
-              }
+              )}
             </div>
             <div className="form-control">
               <label className="label">
@@ -54,23 +54,26 @@ export default function Login() {
                 type="password"
                 placeholder="password"
                 className="input input-bordered"
-                {...register("password",{required: true, minLength: 6,})}
+                {...register("password", { required: true, minLength: 6 })}
               />
-               {errors.password?.type==='required' && 
+              {errors.password?.type === "required" && (
                 <p className="text-red-500 text-sm font-light">
                   Password is required!
                 </p>
-              }
-              {errors.password?.type==='minLength' && 
+              )}
+              {errors.password?.type === "minLength" && (
                 <p className="text-red-500 text-sm font-light">
                   Password must have atleast 6 characters!
                 </p>
-              }
+              )}
             </div>
 
             <div className="form-control mt-6">
-              <button type="submit" className="btn btn-secondary">Login</button>
+              <button type="submit" className="btn btn-secondary">
+                Login
+              </button>
             </div>
+            <GoogleLogin />
             <p className="my-4 text-sm font-light">
               New to Our Site?
               <Link to="/register" className="text-pink-500 underline">
